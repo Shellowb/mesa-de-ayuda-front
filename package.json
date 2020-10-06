@@ -98,7 +98,7 @@
     "roots": [
       "<rootDir>/src"
     ],
-    "collectCoverageFrom": [º
+    "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts"
     ],
