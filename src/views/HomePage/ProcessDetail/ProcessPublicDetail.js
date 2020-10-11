@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-import ProcessApi from '../../../api/processRepository';
-import { Typography, Form, Input, Button, Switch, Space, Row, Col, Popconfirm, notification } from 'antd';
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Typography } from 'antd';
 const { Title } = Typography;
 
 class ProcessPublicDetail extends Component {
-  constructor(props){
-    super(props);
-  }
 
   render(){
     return (

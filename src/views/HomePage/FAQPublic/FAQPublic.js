@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import { Typography, Collapse, Spin, Button, Space, Popconfirm, notification, Switch, Divider } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography, Collapse, Spin, Space, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const { Title } = Typography;
 const { Panel } = Collapse;
 

@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import './HomeLayout.css';
-import { Layout, Menu, Avatar, Button, PageHeader, notification } from 'antd';
+import { Layout, PageHeader } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faEnvelope, faSignOutAlt, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
-
-import { UserOutlined } from '@ant-design/icons';
-import AuthApi from '../../../api/authRepository';
-
-const { Content, Sider } = Layout;
+import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 
 class HomeLayout extends Component {
 

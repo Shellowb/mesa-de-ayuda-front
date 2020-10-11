@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import './HomePage.css';
 import '../../utils/header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate, faBriefcase, faRocket, faClock , faEnvelopeSquare, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
-import { Layout, Row, Col , PageHeader, Button, Card, Typography} from 'antd';
+import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { Layout, Row, Col, Button, Card, Typography} from 'antd';
 
 import { Collapse } from 'antd';
 const { Footer } = Layout;

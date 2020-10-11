@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import ProcessApi from '../../../api/processRepository';
-import { Layout, Menu, Avatar, Button, PageHeader, notification, Spin } from 'antd';
+import { Layout, Menu, PageHeader, notification, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faEnvelope, faSignOutAlt, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 import { LoadingOutlined } from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
-import AuthApi from '../../../api/authRepository';
 
 const { Content, Sider } = Layout;
 
