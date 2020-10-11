@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/mesa-de-ayuda-front/static/css/main.4fb6ae2b.chunk.css",
+    "main.js": "/mesa-de-ayuda-front/static/js/main.8d292f7f.chunk.js",
+    "main.js.map": "/mesa-de-ayuda-front/static/js/main.8d292f7f.chunk.js.map",
+    "runtime-main.js": "/mesa-de-ayuda-front/static/js/runtime-main.f7a68fe3.js",
+    "runtime-main.js.map": "/mesa-de-ayuda-front/static/js/runtime-main.f7a68fe3.js.map",
+    "static/css/2.99a5358a.chunk.css": "/mesa-de-ayuda-front/static/css/2.99a5358a.chunk.css",
+    "static/js/2.ab7b6eee.chunk.js": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js",
+    "static/js/2.ab7b6eee.chunk.js.map": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js.map",
+    "index.html": "/mesa-de-ayuda-front/index.html",
+    "precache-manifest.230dc82c9bb26861d26fbf1878585f18.js": "/mesa-de-ayuda-front/precache-manifest.230dc82c9bb26861d26fbf1878585f18.js",
+    "service-worker.js": "/mesa-de-ayuda-front/service-worker.js",
+    "static/css/2.99a5358a.chunk.css.map": "/mesa-de-ayuda-front/static/css/2.99a5358a.chunk.css.map",
+    "static/css/main.4fb6ae2b.chunk.css.map": "/mesa-de-ayuda-front/static/css/main.4fb6ae2b.chunk.css.map",
+    "static/js/2.ab7b6eee.chunk.js.LICENSE.txt": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js.LICENSE.txt",
+    "static/media/HomePage.css": "/mesa-de-ayuda-front/static/media/cool-background.ca98398c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f7a68fe3.js",
+    "static/css/2.99a5358a.chunk.css",
+    "static/js/2.ab7b6eee.chunk.js",
+    "static/css/main.4fb6ae2b.chunk.css",
+    "static/js/main.8d292f7f.chunk.js"
+  ]
+}
