@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/mesa-de-ayuda-front/static/css/main.4fb6ae2b.chunk.css",
-    "main.js": "/mesa-de-ayuda-front/static/js/main.8d292f7f.chunk.js",
-    "main.js.map": "/mesa-de-ayuda-front/static/js/main.8d292f7f.chunk.js.map",
-    "runtime-main.js": "/mesa-de-ayuda-front/static/js/runtime-main.f7a68fe3.js",
-    "runtime-main.js.map": "/mesa-de-ayuda-front/static/js/runtime-main.f7a68fe3.js.map",
-    "static/css/2.99a5358a.chunk.css": "/mesa-de-ayuda-front/static/css/2.99a5358a.chunk.css",
-    "static/js/2.ab7b6eee.chunk.js": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js",
-    "static/js/2.ab7b6eee.chunk.js.map": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js.map",
-    "index.html": "/mesa-de-ayuda-front/index.html",
-    "precache-manifest.230dc82c9bb26861d26fbf1878585f18.js": "/mesa-de-ayuda-front/precache-manifest.230dc82c9bb26861d26fbf1878585f18.js",
-    "service-worker.js": "/mesa-de-ayuda-front/service-worker.js",
-    "static/css/2.99a5358a.chunk.css.map": "/mesa-de-ayuda-front/static/css/2.99a5358a.chunk.css.map",
-    "static/css/main.4fb6ae2b.chunk.css.map": "/mesa-de-ayuda-front/static/css/main.4fb6ae2b.chunk.css.map",
-    "static/js/2.ab7b6eee.chunk.js.LICENSE.txt": "/mesa-de-ayuda-front/static/js/2.ab7b6eee.chunk.js.LICENSE.txt",
-    "static/media/HomePage.css": "/mesa-de-ayuda-front/static/media/cool-background.ca98398c.png"
+    "main.css": "/static/css/main.caf34de5.chunk.css",
+    "main.js": "/static/js/main.7c64e4c7.chunk.js",
+    "main.js.map": "/static/js/main.7c64e4c7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c8a21426.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c8a21426.js.map",
+    "static/css/2.99a5358a.chunk.css": "/static/css/2.99a5358a.chunk.css",
+    "static/js/2.ce0cc52d.chunk.js": "/static/js/2.ce0cc52d.chunk.js",
+    "static/js/2.ce0cc52d.chunk.js.map": "/static/js/2.ce0cc52d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.8f7896a8661bf1a3d9e7a60fe8e1bcb1.js": "/precache-manifest.8f7896a8661bf1a3d9e7a60fe8e1bcb1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.99a5358a.chunk.css.map": "/static/css/2.99a5358a.chunk.css.map",
+    "static/css/main.caf34de5.chunk.css.map": "/static/css/main.caf34de5.chunk.css.map",
+    "static/js/2.ce0cc52d.chunk.js.LICENSE.txt": "/static/js/2.ce0cc52d.chunk.js.LICENSE.txt",
+    "static/media/HomePage.css": "/static/media/cool-background.ca98398c.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.f7a68fe3.js",
+    "static/js/runtime-main.c8a21426.js",
     "static/css/2.99a5358a.chunk.css",
-    "static/js/2.ab7b6eee.chunk.js",
-    "static/css/main.4fb6ae2b.chunk.css",
-    "static/js/main.8d292f7f.chunk.js"
+    "static/js/2.ce0cc52d.chunk.js",
+    "static/css/main.caf34de5.chunk.css",
+    "static/js/main.7c64e4c7.chunk.js"
   ]
 }
