@@ -2,7 +2,7 @@ import axios from 'axios';
   
 const processRepository = () => {  
   // let baseUrl = 'http://localhost:8000/api/v1/procesos/';  
-  let baseUrl = 'http://mesadeayudadcc.herokuapp.com/api/v1/procesos/';  
+  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/procesos/';  
     
   const getProcess = () => {  
     return new Promise((resolve, reject) => {  

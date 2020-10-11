@@ -2,7 +2,7 @@ import axios from 'axios';
   
 const instancesRepository = () => {  
   // let baseUrl = 'http://localhost:8000/api/v1/instancias/';  
-  let baseUrl = 'http://mesadeayudadcc.herokuapp.com/api/v1/instancias/';  
+  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/instancias/';  
 
   const getInstancesByProcess = (processId) => {  
     return new Promise((resolve, reject) => {  
