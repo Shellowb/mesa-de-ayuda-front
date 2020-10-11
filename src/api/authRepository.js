@@ -1,8 +1,8 @@
 import axios from 'axios';  
   
 const authRepository = () => {  
-  // let baseUrl = 'http://localhost:8000/rest-auth';  
-  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/rest-auth';  
+  let baseUrl = 'http://localhost:8000/rest-auth';  
+  // let baseUrl = 'https://mesadeayudadcc.herokuapp.com/rest-auth';  
   // let userUrl = 'http://localhost:8000/api/auth/me/';  
    
   const tokenName = 'token';  

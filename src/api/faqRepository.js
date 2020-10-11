@@ -1,8 +1,8 @@
 import axios from 'axios';  
   
 const faqRepository = () => {  
-  // let baseUrl = 'http://localhost:8000/api/v1/FAQ/';   
-  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/FAQ/';   
+  let baseUrl = 'http://localhost:8000/api/v1/FAQ/';   
+  // let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/FAQ/';   
 
   const getFaqByProcess = (processId) => {  
     return new Promise((resolve, reject) => {  
