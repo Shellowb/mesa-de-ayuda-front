@@ -26,6 +26,7 @@ const authRepository = () => {
         localStorage.setItem(tokenName, JSON.stringify(r.data.key));  
         resolve(r.data);  
       }).catch(e => {  
+        console.log(e);
         reject(e.response);  
       }); 
     }); 
@@ -44,6 +45,7 @@ const authRepository = () => {
         localStorage.setItem(tokenName, JSON.stringify(r.data.key));  
         resolve(r.data);  
       }).catch(e => {  
+        console.log(e);
         reject(e.response);  
       }); 
     }); 
@@ -63,6 +65,7 @@ const authRepository = () => {
         localStorage.removeItem(tokenName);  
         resolve(r.data);  
       }).catch(e => {   
+        console.log(e);
         reject(e.response);  
       }); 
     }); 
