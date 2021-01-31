@@ -1,6 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+.main-header {
+  background: rgb(22, 12, 82);
+  height: 65px;
+  color: #fff;
+  padding-top: 18px;
+  font-size: 22px;
+  font-family: 'Lato', sans-serif;
+}
+
+
+
 .logo {
   height: 40px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255);
   margin: 16px;
 }
 

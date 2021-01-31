@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import InstanceApi from '../../../api/instancesRepository';
-import TimelineCreateForm from './TimelineCreateForm';
-import TimelineEditForm from './TimelineEditForm';
 import { Typography, Timeline, Spin, Space, notification, Popconfirm, Button, Calendar } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const { Text } = Typography;
 
-class TimelineComponent extends Component {
+class TimelinePublicComponent extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -54,19 +52,6 @@ class TimelineComponent extends Component {
           return (
             <Timeline.Item>
               <Space direction='vertical'>
-                <Space>
-                <TimelineEditForm {...step} componentDidMount={() => this.componentDidMount()}/>
-                <Popconfirm
-                  placement="topRight"
-                  title="¿Estas seguro que quieres eliminar este proceso?"
-                  onConfirm={() => {this.confirmDelete(step.id)}}
-                  okText="Si"
-                  cancelText="No"
-                >
-                  <Button icon={<FontAwesomeIcon icon={faTrash}/>} type="text" />
-                </Popconfirm>
-                - Por:{step.created_by.first_name}{step.created_by.last_name}
-                </Space>
                   <Text>
                     {moment(step.start_date).format('DD/MM/YYYY')} 
                     {step.end_date ? ` - ${moment(step.end_date).format('DD/MM/YYYY')}`: '' }
@@ -103,7 +88,6 @@ class TimelineComponent extends Component {
     return (
       <div style={{paddingTop: '1%'}}>
         <Space direction='vertical'>
-          <TimelineCreateForm {...this.props} componentDidMount={() => this.componentDidMount()}/>
           <br/>
           {this.state.list ? this.list() : this.grid}
         </Space>
@@ -112,4 +96,4 @@ class TimelineComponent extends Component {
   }
 }
 
-export default TimelineComponent;
+export default TimelinePublicComponent;

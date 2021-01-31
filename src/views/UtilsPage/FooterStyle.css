@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+.site-footer {
+  background: #231F20;
+  height: 220px;
+  position:relative; 
+}
+.dcc-image {
+  top: 20px;
+  left: 5%;
+  position: absolute;
+  width:25%;
+}
+
+.info {
+  position: absolute;
+  right: 5%;
+  align-content: right;
+  top: 35px;
+  color: #fff;
+  
+}
+
+.title {
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  
+}
+
+.right-content {
+  right: 0;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+#copyright {
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  position: absolute;
+  left: 43%;
+  margin-left: -50px;
+  bottom: 15px;
+  margin-top: -50px;
+}

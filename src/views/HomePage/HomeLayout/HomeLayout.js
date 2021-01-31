@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import './HomeLayout.css';
 import { Layout, PageHeader } from 'antd';
+import {  Row, Col, Card, Typography, Space, notification, Spin} from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,13 +15,14 @@ class HomeLayout extends Component {
   render(){
     return (
       <Layout key="layout" style={{minHeight: '100vh'}}>
-        <PageHeader
-            className="site-page-header"
-            title="Mesa de Ayuda DCC"
-            extra={[
-              <FontAwesomeIcon icon={faEnvelopeSquare} size="2x"/>,
-            ]}
-        />
+        <div class='position'>
+          <div class='main-header'>
+            <Row justify='center' align='middle'>
+              <b>Mesa de Ayuda DCC</b>
+            </Row>
+            
+          </div>
+        </div>
 
         {this.props.children}
       </Layout>

@@ -1,15 +1,17 @@
 import axios from 'axios';  
+import AuthApi from './authRepository';
   
 const processRepository = () => {  
-  // let baseUrl = 'http://localhost:8000/api/v1/procesos/';  
-  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/procesos/';  
+  //let baseUrl = 'http://localhost:8000/api/v1/procesos/';  
+  let baseUrl = 'https://8a52de9f4247.ngrok.io/api/v1/procesos/';  
     
   const getProcess = () => {  
     return new Promise((resolve, reject) => {  
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`
           }  
       });  
  
@@ -27,11 +29,31 @@ const processRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`
           }  
       });  
  
       instance.get(`${processId}`)  
+      .then(r => {  
+        resolve(r.data);  
+      }).catch(e => { 
+        reject(e.response);  
+      }); 
+    }); 
+  }; 
+
+  const getProcessPublishedById = (processId) => {  
+    return new Promise((resolve, reject) => {  
+      const instance = axios.create({  
+          baseURL: baseUrl,   
+          headers: {  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`
+          }  
+      });  
+ 
+      instance.get(`publicados/${processId}`)  
       .then(r => {  
         resolve(r.data);  
       }).catch(e => { 
@@ -63,7 +85,8 @@ const processRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -81,7 +104,8 @@ const processRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}` 
         }  
       });  
  
@@ -99,7 +123,8 @@ const processRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -117,7 +142,8 @@ const processRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -137,7 +163,8 @@ const processRepository = () => {
     updatePublished,
     getProcessById,
     updateProcess,
-    getProcessPublished
+    getProcessPublished,
+    getProcessPublishedById
   }  
 };  
   

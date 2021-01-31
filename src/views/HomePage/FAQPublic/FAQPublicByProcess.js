@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography, Collapse, Spin, Space, notification, Tooltip } from 'antd';
 import moment from 'moment';
-import { LoadingOutlined } from '@ant-design/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import VoteComponent from './VoteComponent';
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { Panel } = Collapse;
 
-class FAQPublic extends Component {
+class FAQPublicProcess extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -18,9 +18,9 @@ class FAQPublic extends Component {
   }
 
   componentDidMount(){
-    FAQApi.getFaqPublished()
-      .then(response => {
-        this.setState({faqs: response.slice(0,5)})
+    FAQApi.getFaqByProcessPublished(this.props.id)
+      .then(response => { 
+        this.setState({faqs: response})
       }).catch(e => {
         notification['error']({
           message: 'Error!',
@@ -41,7 +41,7 @@ class FAQPublic extends Component {
 
     return(
       <div>
-        <Title level={4}>Últimas preguntas</Title>
+        <Title level={3}>Preguntas frecuentes</Title>
         <Space direction="vertical" style={{ width: '100%' }}>
           <Collapse expandIconPosition={'right'}>
             {this.state.faqs.map((faq) => {
@@ -71,4 +71,4 @@ class FAQPublic extends Component {
   }
 }
 
-export default FAQPublic;
+export default FAQPublicProcess;

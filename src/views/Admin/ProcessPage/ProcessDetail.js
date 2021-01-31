@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import ProcessApi from '../../../api/processRepository';
-import { Typography, Form, Input, Button, Switch, Space, Row, Col, Popconfirm, notification } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography, Form, Input, Button, Switch, Space, Row, Col, Popconfirm, notification, Select } from 'antd';
+import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 const { Title } = Typography;
+const { Option } = Select;
 
 class ProcessDatail extends Component {
   constructor(props){
@@ -11,13 +15,28 @@ class ProcessDatail extends Component {
     this.state = {
       edit: false,
       description: '',
+      banner_description: '',
+      icon: this.props.process.icon,
+      icons: {
+        'faUserGraduate': faUserGraduate,
+        'faBriefcase': faBriefcase,
+        'faRocket': faRocket,
+        'faClock': faClock,
+        'faQuestionCircle': faQuestionCircle
+      }
     };
+  }
+
+  changeIcon = (value) => {
+    this.setState({icon: value});
   }
 
   onFinish = (process) => {
     const params = {
       name: process.name !== undefined? process.name : this.props.process.name,
       description: process.description !== undefined? this.state.description : this.props.process.description,
+      banner_description: process.banner_description !== undefined? this.state.banner_description : this.props.process.banner_description,
+      icon: this.state.icon,
       published: process.published !== undefined? process.published : this.props.process.published,
     }
     ProcessApi.updateProcess(this.props.process.id, params)
@@ -82,7 +101,17 @@ class ProcessDatail extends Component {
           </Col>
         </Row>
 
-        <Form.Item  name="description">
+        <Form.Item label="Icono" name="icon" rules={[
+              {required: true, message: 'Por favor ingresa un icono'},
+            ]}>
+              <Select defaultValue={this.state.icon} style={{ width: 120 }} onChange={this.changeIcon}>
+                {Object.keys(this.state.icons).map((key) => {
+                  return (<Option value={key}><FontAwesomeIcon icon={this.state.icons[key]} color="#757575"/></Option>)
+                })}
+              </Select>
+        </Form.Item>
+
+        <Form.Item label='Descripción'  name="description">
           <CKEditor
             editor={ ClassicEditor }
             onChange={ ( event, editor ) => {} }
@@ -92,6 +121,19 @@ class ProcessDatail extends Component {
             } }
             onFocus={ ( event, editor ) => {} }
             data={this.props.process.description}
+          />
+        </Form.Item>
+
+        <Form.Item label='Descripción de banner' name="banner_description">
+          <CKEditor
+            editor={ ClassicEditor }
+            onChange={ ( event, editor ) => {} }
+            onBlur={ ( event, editor ) => {
+              const data = editor.getData();
+              this.setState({banner_description: data});
+            } }
+            onFocus={ ( event, editor ) => {} }
+            data={this.props.process.banner_description}
           />
         </Form.Item>
       </Form>
@@ -105,6 +147,7 @@ class ProcessDatail extends Component {
         <Row >
           <Col span={22} style={{display: 'flex', alignContent: 'center'}}>
             <Space width='100%' size='large'>
+            <FontAwesomeIcon icon={this.state.icons[this.state.icon]} size="2x"/>
               <Title>{this.props.process.name}</Title>
               <Popconfirm
                 placement="topRight"
@@ -127,6 +170,8 @@ class ProcessDatail extends Component {
           </Col>
         </Row>
         <div dangerouslySetInnerHTML={{__html: this.props.process.description}} />
+        <br/>
+        <div dangerouslySetInnerHTML={{__html: '<b>Descripción de Banner: </b>' + this.props.process.banner_description}} />
       </div>
     )
   }

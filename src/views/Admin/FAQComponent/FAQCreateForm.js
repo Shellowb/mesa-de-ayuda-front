@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import { Modal, Button, Form, Switch, Input, notification } from 'antd';
+import CategoryApi from '../../../api/categoryRepository';
+import { Modal, Button, Form, Switch, Input, notification, Select, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+const { Option } = Select;
 
 class FAQCreateForm extends Component {
   constructor(props){
@@ -15,7 +19,8 @@ class FAQCreateForm extends Component {
         answer: '',
         published: false,
         process: this.props.params.id,
-      }
+      },
+      categories: []
     };
   }
 
@@ -31,6 +36,7 @@ class FAQCreateForm extends Component {
 
   onFinish = (question) => {
     const questionState = this.state.question;
+    questionState.category = question.category;
     questionState.question = question.question;
     this.setState({question: questionState});
     FAQApi.postQuestion(this.state.question)
@@ -51,6 +57,16 @@ class FAQCreateForm extends Component {
   }
 
   render(){
+
+    if(this.props.categories == null){
+      const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+      return (
+        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+          <Spin indicator={antIcon} />
+        </div>
+      );
+    }
+    
     return(
       <div>
         <Button type="primary" icon={<PlusCircleOutlined />} onClick={this.statusModal}>
@@ -86,6 +102,16 @@ class FAQCreateForm extends Component {
                 } }
                 onFocus={ ( event, editor ) => {} }
               />
+            </Form.Item>
+
+            <Form.Item label="Categoria" name="category" rules={[
+              {required: true, message: 'Por favor selecciona una categoria'},
+            ]}>
+              <Select placeholder="Categoria">
+                {this.props.categories.map(item => (
+                  <Option key={item.id}>{item.name}</Option>
+                ))}
+              </Select>
             </Form.Item>
 
             <Form.Item label="Publicar" name="published">

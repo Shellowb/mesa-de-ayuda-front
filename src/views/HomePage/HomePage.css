@@ -18,10 +18,24 @@
     
   }
 
-.img-background {
-  background-image: url('../../statics/cool-background.png');
+.img-banner {
+  height: 350px;
+  background-image: url('../../statics/bannerimg.png');
   background-repeat: no-repeat, no-repeat;
-  background-size: 100% 350px;
+  background-size: cover;
+}
+
+.text {
+  color: rgb(255, 255, 255);
+  padding:2px;
+
+}
+
+.banner-size {
+  margin-top: 100px;
+}
+
+.img-background {
   padding-left: 7%;
   padding-right: 7%;
   padding-top: 7%;

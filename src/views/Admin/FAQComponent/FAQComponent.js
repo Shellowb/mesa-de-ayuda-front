@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import moment from 'moment';
 import FAQApi from '../../../api/faqRepository';
+import CategoryApi from '../../../api/categoryRepository';
 import FAQCreateForm from './FAQCreateForm';
+import CategoryComponent from '../CategoryComponent/CategoryComponent.js'
 import FAQEditForm from './FAQEditForm';
-import { Typography, Collapse, Spin, Button, Space, Popconfirm, notification, Switch, Divider } from 'antd';
+import { Typography, Tooltip, Collapse, Spin, Button, Space, Popconfirm, notification, Switch, Divider, Tag } from 'antd';
+import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadingOutlined } from '@ant-design/icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -13,14 +17,24 @@ class FAQComponent extends Component {
   constructor(props){
     super(props);
     this.state = {
-      faqs: null
+      faqs: null,
+      categories: null,
     };
   }
 
   componentDidMount(){
     FAQApi.getFaqByProcess(this.props.params.id)
       .then(response => {
-        this.setState({faqs: response})
+        this.setState({faqs: response});
+        CategoryApi.getCategoriesByProcess(this.props.params.id)
+          .then(response => {
+            this.setState({categories: response})
+          }).catch(e => {
+            notification['error']({
+              message: 'Error!',
+              description:
+              'No hemos cargar correctamente las las categorias'});
+        });
       }).catch(e => {
         notification['error']({
           message: 'Error!',
@@ -75,7 +89,10 @@ class FAQComponent extends Component {
       <div>
         <Title level={3}>Preguntas Frecuentes</Title>
         <Space direction="vertical" style={{ width: '100%' }}>
-          <FAQCreateForm {...this.props} componentDidMount={() => this.componentDidMount()}/>
+          <CategoryComponent {...this.props} componentDidMount={() => this.componentDidMount()}/>
+          <Divider />
+          <Title level={5}>Preguntas</Title>
+          <FAQCreateForm {...this.props} componentDidMount={() => this.componentDidMount()} categories={this.state.categories}/>
           <Collapse
             expandIconPosition={'right'}
           >
@@ -86,6 +103,14 @@ class FAQComponent extends Component {
                   key={faq.created_at}
                   extra={[
                     <Space align="center">
+                      <Tag color="volcano">{faq.category.name}</Tag>
+                      <Divider type="vertical" />
+                        {React.createElement(LikeOutlined)}
+                        {faq.likes}
+                        {React.createElement(DislikeOutlined)}
+                        {faq.dislikes}
+                      <Divider type="vertical" />
+                        Actualizado por: {faq.updated_by.first_name}{faq.updated_by.last_name}
                       <Divider type="vertical" />
                       <Popconfirm
                           placement="topRight"
@@ -97,7 +122,7 @@ class FAQComponent extends Component {
                         <Switch checked={faq.published}/>
                       </Popconfirm>
                       <Divider type="vertical" />
-                      <FAQEditForm {...faq} componentDidMount={() => this.componentDidMount()}/>
+                      <FAQEditForm {...faq} componentDidMount={() => this.componentDidMount()} categories={this.state.categories}/>
                       <Popconfirm
                         placement="topRight"
                         title="¿Estas seguro que quieres eliminar esta pregunta?"

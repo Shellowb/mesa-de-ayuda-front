@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import ProcessApi from '../../../api/processRepository';
 import ProcessPublicDetail from './ProcessPublicDetail';
+import InstanceListComponent from '../InstanceListPublicComponent/InstancesList';
 import { Breadcrumb, Spin, Divider, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import FAQPublic from '../FAQPublic/FAQPublic';
+import FAQPublicProcess from '../FAQPublic/FAQPublicByProcess';
 
 class ProcessPublicPage extends Component {
   constructor(props){
@@ -16,8 +17,7 @@ class ProcessPublicPage extends Component {
 
   componentDidMount(){
     this.setState({params: this.props.match.params});
-    console.log('asdfadsdfas',this.props)
-    ProcessApi.getProcessById(this.props.match.params.id_process)
+    ProcessApi.getProcessPublishedById(this.props.match.params.id_process)
       .then(response => {
         this.setState({process: response})
       }).catch(e => {
@@ -44,7 +44,9 @@ class ProcessPublicPage extends Component {
         </Breadcrumb>
         <ProcessPublicDetail {...this.state.process}/>
         <Divider/>
-        <FAQPublic {...this.state.process}/>
+        <InstanceListComponent {...this.state.process}/>
+        <Divider/>
+        <FAQPublicProcess {...this.state.process}/>
       </div>
     );
   }

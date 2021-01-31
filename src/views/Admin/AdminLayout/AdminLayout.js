@@ -1,15 +1,36 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import './AdminLayout.css';
-import { Layout, Menu, Avatar, Button, PageHeader, notification } from 'antd';
+import FooterComponent from '../../UtilsPage/Footer';
+import { Layout, Spin, Menu, Avatar, Button, PageHeader, notification } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { UserOutlined } from '@ant-design/icons';
 import AuthApi from '../../../api/authRepository';
 
-const { Content, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 class AdminLayout extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      user: null,
+    };
+  }
+
+  componentDidMount(){
+    AuthApi.getUser()
+    .then(() => {
+      this.setState({user: AuthApi.getLocalUser()});
+    }).catch(e => {
+      notification['error']({
+        message: 'Error!',
+        description:
+        'Hubo un error al obtener la información del usuario, por favor notificalo al administrador'});
+    });
+  }
 
   handleClick = e => {
     this.props.children.props.history.push(e.key);
@@ -18,7 +39,7 @@ class AdminLayout extends Component {
   logout = (e) => {
     e.preventDefault();
     AuthApi.logOut()
-    .then(r => {
+    .then(() => {
       this.props.children.props.history.push('/');
     }).catch(e => {
       notification['error']({
@@ -29,6 +50,15 @@ class AdminLayout extends Component {
   }
 
   render(){
+    if(this.state.user == null){
+      const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+      return (
+        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+          <Spin indicator={antIcon} />
+        </div>
+      );
+    }
+
     return (
       <Layout key="layout" style={{minHeight: '100vh'}}>
         <PageHeader
@@ -36,8 +66,8 @@ class AdminLayout extends Component {
           className="site-page-header"
           title="Admin Mesa de Ayuda DCC"
           extra={[
-            <Avatar key="avatar" icon={<UserOutlined />} />,
-            'Pablo Arancibia Barahona',
+            <Avatar key="avatar">{this.state.user.first_name[0]}</Avatar>,
+            `${this.state.user.first_name} ${this.state.user.last_name}`,
             <Button key="button" icon={<FontAwesomeIcon icon={faSignOutAlt}/>} type="text" onClick={this.logout} />
           ]}
         />
@@ -57,7 +87,9 @@ class AdminLayout extends Component {
           <Content key="content" style={{ margin: '24px 16px 0'}}>
             {this.props.children}
           </Content>
+
         </Layout>
+        <FooterComponent />
       </Layout>
     );
   }

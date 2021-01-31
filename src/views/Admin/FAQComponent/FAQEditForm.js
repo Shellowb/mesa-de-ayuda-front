@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import { Modal, Button, Form, Switch, Input, notification } from 'antd';
+import { Modal, Button, Form, Switch, Input, notification, Select, Spin } from 'antd';
+import CategoryApi from '../../../api/categoryRepository';
+import { LoadingOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+
+const { Option } = Select;
 
 
 class FAQEditForm extends Component {
@@ -12,6 +16,7 @@ class FAQEditForm extends Component {
     super(props);
     this.state = {
       visible: false,
+      categories: [],
       question: {
         question: this.props.question,
         answer: this.props.answer,
@@ -20,6 +25,7 @@ class FAQEditForm extends Component {
       }
     };
   }
+
 
   statusModal = () => {
     this.setState({visible: !this.state.visible});
@@ -33,6 +39,8 @@ class FAQEditForm extends Component {
 
   onFinish = (question) => {
     const questionState = this.state.question;
+    questionState.category = question.category;
+    console.log(questionState);
     questionState.question = question.question === undefined ? this.state.question.question : question.question;
     FAQApi.updateQuestion(this.props.id, questionState)
       .then(() => {
@@ -46,11 +54,20 @@ class FAQEditForm extends Component {
         notification['error']({
           message: 'Error!',
           description:
-          'No hemos actulizar correctamente la pregunta'});
+          'No hemos actualizar correctamente la pregunta'});
     });
   }
 
   render(){
+    if(this.props.categories == null){
+      const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+      return (
+        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+          <Spin indicator={antIcon} />
+        </div>
+      );
+    }
+
     return(
       <div>
         <Button icon={<FontAwesomeIcon icon={faEye}/>} type="text" onClick={this.statusModal}/>
@@ -81,6 +98,16 @@ class FAQEditForm extends Component {
                 } }
                 onFocus={ ( event, editor ) => {} }
               />
+            </Form.Item>
+
+            <Form.Item label="Categoria" name="category" rules={[
+              {required: true, message: 'Por favor selecciona una categoria'},
+            ]}>
+              <Select placeholder="Categoria" defaultValue={this.props.category.name}>
+                {this.props.categories.map(item => (
+                  <Option key={item.id}>{item.name}</Option>
+                ))}
+              </Select>
             </Form.Item>
 
             <Form.Item label="Publicar" name="published">

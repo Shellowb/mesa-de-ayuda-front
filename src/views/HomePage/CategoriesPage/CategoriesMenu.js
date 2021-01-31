@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
+import '../HomeLayout/HomeLayout.css';
 import ProcessApi from '../../../api/processRepository';
+import FooterComponent from '../../UtilsPage/Footer.js';
+import Banner from '../../UtilsPage/Banner.js';
+import {  Row, Col, Card, Typography, Space} from 'antd';
 import { Layout, Menu, PageHeader, notification, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { faUserGraduate, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const { Content, Sider } = Layout;
@@ -14,6 +19,13 @@ class CategoriesMenu extends Component {
     super(props);
     this.state = {
       process: null,
+      icons: {
+        'faUserGraduate': faUserGraduate,
+        'faBriefcase': faBriefcase,
+        'faRocket': faRocket,
+        'faClock': faClock,
+        'faQuestionCircle': faQuestionCircle
+      }
     };
   }
 
@@ -31,7 +43,7 @@ class CategoriesMenu extends Component {
   }
 
   handleClick = e => {
-    console.log(e.key);
+    window.location.pathname = e.key;
   };
 
   render(){
@@ -45,13 +57,14 @@ class CategoriesMenu extends Component {
     }
     return (
       <Layout key="layout" style={{minHeight: '100vh'}}>
-        <PageHeader
-            className="site-page-header"
-            title="Mesa de Ayuda DCC"
-            extra={[
-              <FontAwesomeIcon icon={faEnvelopeSquare} size="2x"/>,
-            ]}
-        />
+        <div class='position'>
+          <div class='main-header'>
+            <Row justify='center' align='middle'>
+              <span onClick={() => {window.location.href='/'}}><b>Mesa de Ayuda DCC</b></span>
+            </Row>
+            
+          </div>
+        </div>
 
         <Layout key="menu" className="site-layout-sub-header-background">
         <Sider key="sider">
@@ -59,18 +72,21 @@ class CategoriesMenu extends Component {
             key="submenu"
             onClick={this.handleClick}
             mode="inline"
-            defaultSelectedKeys={[`${this.state.process[0].id}`]}
+            defaultSelectedKeys={[`/categorias/${this.props.children.props.match.params.id_process}`]}
             style={{ height: '100%', borderRight: 0, backgroundColor: '#f0f4f6'}}
           >
             {this.state.process.map((process) => {
-              return (<Menu.Item icon={<FontAwesomeIcon icon={faBriefcase}/>} key={process.id}> {process.name}</Menu.Item>)
+              return (<Menu.Item icon={<FontAwesomeIcon icon={this.state.icons[process.icon]}/>} key={`/categorias/${process.id}`}> {process.name}</Menu.Item>)
             })}
           </Menu>
         </Sider>
         <Content key="content" style={{ margin: '24px 16px 0'}}>
             {this.props.children}
+            <Banner />
           </Content>  
       </Layout>
+      
+      <FooterComponent />
       </Layout>
 
     );

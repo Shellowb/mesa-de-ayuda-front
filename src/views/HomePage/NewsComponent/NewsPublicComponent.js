@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import InstanceApi from '../../../api/instancesRepository';
 import moment from 'moment';
-import NewsCreateForm from './NewsCreateForm';
 import {Spin, Space, notification, Popconfirm, Button, Comment, Tooltip, List } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-class NewsComponent extends Component {
+class NewsPublicComponent extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -19,6 +18,7 @@ class NewsComponent extends Component {
   componentDidMount(){
     InstanceApi.getNews(this.props.params.id_instance)
       .then(response => {
+        console.log(this.props.params.id_instance);
         this.setState({news: response});
       }).catch(e => {
         notification['error']({
@@ -55,7 +55,6 @@ class NewsComponent extends Component {
     }
     return (
       <div style={{paddingTop: '1%'}}>
-        <NewsCreateForm {...this.props} componentDidMount={() => this.componentDidMount()}/>
         <List
           className="comment-list"
           itemLayout="horizontal"
@@ -63,17 +62,6 @@ class NewsComponent extends Component {
           renderItem={item => (
             <li>
               <Comment
-              avatar={
-                <Popconfirm
-                  placement="topRight"
-                  title="¿Estas seguro que quieres eliminar esta novedad?"
-                  onConfirm={() => {this.confirmDelete(item.id)}}
-                  okText="Si"
-                  cancelText="No"
-                >
-                  <Button icon={<FontAwesomeIcon icon={faTrash}/>} type="text" />
-                </Popconfirm>
-              }
                 content={<div dangerouslySetInnerHTML={{__html: item.description}} />}
                 datetime={
                   <Space >
@@ -92,4 +80,4 @@ class NewsComponent extends Component {
   }
 }
 
-export default NewsComponent;
+export default NewsPublicComponent;

@@ -1,15 +1,17 @@
 import axios from 'axios';  
+import AuthApi from './authRepository';
   
 const instancesRepository = () => {  
-  // let baseUrl = 'http://localhost:8000/api/v1/instancias/';  
-  let baseUrl = 'https://mesadeayudadcc.herokuapp.com/api/v1/instancias/';  
+  //let baseUrl = 'http://localhost:8000/api/v1/instancias/';  
+  let baseUrl = 'https://8a52de9f4247.ngrok.io/api/v1/instancias/';  
 
   const getInstancesByProcess = (processId) => {  
     return new Promise((resolve, reject) => {  
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -22,12 +24,33 @@ const instancesRepository = () => {
     }); 
   }; 
 
-  const postInstance = (instanceObject) => {  
+  const getInstancesPublishedByProcess = (processId) => {  
     return new Promise((resolve, reject) => {  
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
+          }  
+      });  
+ 
+      instance.get(`${processId}/instancias/publicados`)  
+      .then(r => {  
+        resolve(r.data);  
+      }).catch(e => {  
+        reject(e.response);  
+      }); 
+    }); 
+  };
+
+  const postInstance = (instanceObject) => {  
+    console.log(instanceObject);
+    return new Promise((resolve, reject) => {  
+      const instance = axios.create({  
+          baseURL: baseUrl,   
+          headers: {  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
       instance.post('', instanceObject)  
@@ -44,7 +67,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -62,7 +86,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -80,7 +105,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -98,7 +124,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -111,12 +138,32 @@ const instancesRepository = () => {
     }); 
   }; 
 
+  const getInstancePublishedById = (instanceId) => {  
+    return new Promise((resolve, reject) => {  
+      const instance = axios.create({  
+          baseURL: baseUrl,   
+          headers: {  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
+          }  
+      });  
+ 
+      instance.get(`${instanceId}/publicado`)  
+      .then(r => {  
+        resolve(r.data);  
+      }).catch(e => {  
+        reject(e.response);  
+      }); 
+    }); 
+  };
+
   const getSteps = (instanceId) => {  
     return new Promise((resolve, reject) => {  
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -134,7 +181,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -152,7 +200,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -170,7 +219,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -188,7 +238,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -206,7 +257,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
           baseURL: baseUrl,   
           headers: {  
-            'Content-Type': 'application/json'  
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
  
@@ -224,7 +276,8 @@ const instancesRepository = () => {
       const instance = axios.create({  
         baseURL: baseUrl,   
         headers: {  
-          'Content-Type': 'application/json'  
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${AuthApi.getLocalToken()}`  
         }  
       });  
  
@@ -250,7 +303,9 @@ const instancesRepository = () => {
     updateStep,
     getNews,
     postNews,
-    deleteNews
+    deleteNews,
+    getInstancesPublishedByProcess,
+    getInstancePublishedById
   }  
 };  
   

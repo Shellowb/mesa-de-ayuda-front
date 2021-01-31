@@ -21,6 +21,7 @@ class InstanceComponent extends Component {
     InstancesAPI.getInstancesByProcess(this.props.params.id)
       .then(response => {
         this.setState({instances: response})
+        console.log(response);
       }).catch(e => {
         notification['error']({
           message: 'Error!',
@@ -70,16 +71,22 @@ class InstanceComponent extends Component {
           
           <Table dataSource={this.state.instances} >
             <Column title="Instancia" dataIndex="name" key="name" />
-            <Column title="Fecha de Creación" dataIndex="created_at" key="created_at" 
-              render={(date) => (
-                <span>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</span>
+            <Column title="Creación" dataIndex={["created_at", "created_by"]} key="created_at" 
+              render={(date, user) => (
+                <Space direction="vertical">
+                  <span key="date">{moment(date).format('DD/MM/YYYY HH:mm')}</span>
+                  <p style={{fontSize: "90%"}}><i>Por: {user.created_by.first_name} {user.created_by.last_name}</i></p>
+                </Space>
               )}
             />
-            <Column title="Última Actualización" dataIndex="last_update" key="last_update"
-              render={(date) => (
-                <Tooltip title={moment(date).format('YYYY-MM-DD HH:mm:ss')}>
-                  <span>{moment(date).fromNow()}</span>
+            <Column title="Última Actualización" dataIndex={["last_update", "updated_by"]} key="last_update"
+              render={(date, user) => (
+                <Space direction="vertical">
+                <Tooltip key="tooltip" title={moment(date).format('YYYY-MM-DD HH:mm:ss')}>
+                  <span key="date" >{moment(date).fromNow()}</span>
                 </Tooltip>
+                <p style={{fontSize: "90%"}}><i>Por: {user.updated_by.first_name} {user.updated_by.last_name}</i></p>
+                </Space>
               )}
             />
             <Column title="Publicado" dataIndex={["published","id"]}

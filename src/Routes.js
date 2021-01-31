@@ -13,6 +13,9 @@ import InstanceDatailPage from './views/Admin/InstanceComponent/InstanceDetailPa
 import HomeLayout from './views/HomePage/HomeLayout/HomeLayout';
 import CategoriesMenu from './views/HomePage/CategoriesPage/CategoriesMenu';
 import ProcessPublicDatail from './views/HomePage/ProcessDetail/ProcessPublicPage';
+import MessageMain from './views/Admin/MessagesComponent/MessageMain';
+import MessageDetail from './views/Admin/MessagesComponent/MessageDetail';
+import InstancePublicDetailPage from './views/HomePage/InstanceListPublicComponent/InstanceDetail';
 
 const AdminRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => {
@@ -40,13 +43,15 @@ export const Routes = () => (
     <PublicRoute key="HomePage" exact path="/" component={HomePage} />  
     <PublicRoute key="HomePage" exact path="/categorias" component={CategoriesMenu} />  
     <CategoryRoute key="HomePage" exact path="/categorias/:id_process" component={ProcessPublicDatail} />  
+    <CategoryRoute key="HomePage" exact path="/categorias/:id_process/instancia/:id_instance" component={InstancePublicDetailPage} />  
     <Route key="LoginPage" exact path="/ingresar" component={LoginPage} />  
     <Route key="SignUpPage" exact path="/registro" component={SignUpPage} />  
     <Route key="NotAuth" exact path="/not-auth" component={NotAuth} />  
     <AdminRoute key="ProcessAdminPage" exact menu="/admin/procesos" path="/admin/procesos" component={ProcessAdminPage} />  
     <AdminRoute key="ProcessCreatePage" exact menu="/admin/procesos" path="/admin/procesos/crear" component={ProcessCreatePage} /> 
     <AdminRoute key="ProcessDatailPage" exact menu="/admin/procesos" path="/admin/procesos/:id" component={ProcessDatailPage} /> 
-    <AdminRoute key="InstanceDatailPage" exact menu="/admin/procesos" path="/admin/procesos/:id_process/instancia/:id_instance" component={InstanceDatailPage} />  
-    <AdminRoute key="NotCreated" exact menu="/admin/mensajes" path="/admin/mensajes" component={NotCreated} />  
+    <AdminRoute key="InstanceDatailPage" exact menu="/admin/procesos" path="/admin/procesos/:id_process/instancia/:id_instance" component={InstanceDatailPage} /> 
+    <AdminRoute key="MessagePage" exact menu="/admin/mensajes" path="/admin/mensajes" component={MessageMain} />  
+    <AdminRoute key="MessageDatailPage" exact menu="/admin/mensajes" path="/admin/mensajes/:chat_id" component={MessageDetail} />  
   </Switch>  
 );

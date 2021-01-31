@@ -25,8 +25,10 @@ class LoginPage extends Component {
     console.log(this.state.user);
     const user = Object.assign({},this.state.user);
     user.username = user.email;
+    console.log("USER", user);
     AuthApi.logIn(user)
       .then(r => {
+        console.log("RRRRRR");
         this.props.history.push('/admin/procesos');
       }).catch(e => {
         console.log(e);
