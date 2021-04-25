@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import 'antd/dist/antd.css';
 import './HomeLayout.css';
-import { Layout, PageHeader } from 'antd';
-import {  Row, Col, Card, Typography, Space, notification, Spin} from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { Layout } from 'antd';
+import { Row } from 'antd';
 
 class HomeLayout extends Component {
 

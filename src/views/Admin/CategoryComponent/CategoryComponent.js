@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import moment from 'moment';
-import FAQApi from '../../../api/faqRepository';
 import CategoryApi from '../../../api/categoryRepository';
-import { Typography, Tooltip, Collapse, Spin, Button, Space, Popconfirm, notification, Input, Divider, Tag } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Typography, Spin, Space, Popconfirm, notification, Input, Tag } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const { Title } = Typography;
-const { Panel } = Collapse;
 
 class CategoryComponent extends Component {
   constructor(props){

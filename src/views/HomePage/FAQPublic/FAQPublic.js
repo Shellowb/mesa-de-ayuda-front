@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography, Collapse, Spin, Space, notification, Tooltip } from 'antd';
 import moment from 'moment';
 import { LoadingOutlined } from '@ant-design/icons';
-import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import VoteComponent from './VoteComponent';
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { Panel } = Collapse;
 
 class FAQPublic extends Component {

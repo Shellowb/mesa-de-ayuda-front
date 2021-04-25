@@ -1,9 +1,7 @@
 import axios from 'axios';  
   
 const authRepository = () => {  
-  //let baseUrl = 'http://localhost:8000/rest-auth';   
-  let baseUrl = 'https://8a52de9f4247.ngrok.io/rest-auth';  
-  // let userUrl = 'http://localhost:8000/api/auth/me/';  
+  let baseUrl = `${process.env.REACT_APP_BASE_URL}/rest-auth`;   
    
   const tokenName = 'token';  
 
@@ -29,7 +27,6 @@ const authRepository = () => {
         localStorage.setItem(tokenName, JSON.stringify(r.data.key)); 
         resolve(r.data);  
       }).catch(e => {  
-        console.log(e);
         reject(e.response);  
       }); 
     }); 
@@ -50,7 +47,6 @@ const authRepository = () => {
         localStorage.setItem('user', JSON.stringify(r.data));  
         resolve(r.data);  
       }).catch(e => {  
-        console.log(e);
         reject(e.response);  
       }); 
     }); 
@@ -69,7 +65,6 @@ const authRepository = () => {
         localStorage.setItem(tokenName, JSON.stringify(r.data.key));  
         resolve(r.data);  
       }).catch(e => {  
-        console.log(e);
         reject(e.response);  
       }); 
     }); 
@@ -90,7 +85,6 @@ const authRepository = () => {
         localStorage.removeItem('user');  
         resolve(r.data);  
       }).catch(e => {   
-        console.log(e);
         reject(e.response);  
       }); 
     }); 

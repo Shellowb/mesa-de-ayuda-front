@@ -101,9 +101,7 @@ class ProcessDatail extends Component {
           </Col>
         </Row>
 
-        <Form.Item label="Icono" name="icon" rules={[
-              {required: true, message: 'Por favor ingresa un icono'},
-            ]}>
+        <Form.Item label="Icono" name="icon" >
               <Select defaultValue={this.state.icon} style={{ width: 120 }} onChange={this.changeIcon}>
                 {Object.keys(this.state.icons).map((key) => {
                   return (<Option value={key}><FontAwesomeIcon icon={this.state.icons[key]} color="#757575"/></Option>)

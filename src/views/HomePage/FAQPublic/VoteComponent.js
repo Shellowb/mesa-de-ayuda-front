@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import { Typography, Collapse, Space, notification, Tooltip, Divider } from 'antd';
-import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
-import { LoadingOutlined } from '@ant-design/icons';
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
-const { Title } = Typography;
-const { Panel } = Collapse;
+import { Space, Tooltip, Divider } from 'antd';
+import { DislikeOutlined, LikeOutlined } from '@ant-design/icons';
 
 class VoteComponent extends Component {
   constructor(props){

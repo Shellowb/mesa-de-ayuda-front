@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import moment from 'moment';
 import FAQApi from '../../../api/faqRepository';
 import CategoryApi from '../../../api/categoryRepository';
 import FAQCreateForm from './FAQCreateForm';
 import CategoryComponent from '../CategoryComponent/CategoryComponent.js'
 import FAQEditForm from './FAQEditForm';
-import { Typography, Tooltip, Collapse, Spin, Button, Space, Popconfirm, notification, Switch, Divider, Tag } from 'antd';
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import { Typography, Collapse, Spin, Button, Space, Popconfirm, notification, Switch, Divider, Tag } from 'antd';
+import { DislikeOutlined, LikeOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadingOutlined } from '@ant-design/icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';

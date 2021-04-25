@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
 import { Modal, Button, Form, Switch, Input, notification, Select, Spin } from 'antd';
-import CategoryApi from '../../../api/categoryRepository';
 import { LoadingOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CKEditor from '@ckeditor/ckeditor5-react';
@@ -40,7 +39,6 @@ class FAQEditForm extends Component {
   onFinish = (question) => {
     const questionState = this.state.question;
     questionState.category = question.category;
-    console.log(questionState);
     questionState.question = question.question === undefined ? this.state.question.question : question.question;
     FAQApi.updateQuestion(this.props.id, questionState)
       .then(() => {
@@ -100,9 +98,7 @@ class FAQEditForm extends Component {
               />
             </Form.Item>
 
-            <Form.Item label="Categoria" name="category" rules={[
-              {required: true, message: 'Por favor selecciona una categoria'},
-            ]}>
+            <Form.Item label="Categoria" name="category" >
               <Select placeholder="Categoria" defaultValue={this.props.category.name}>
                 {this.props.categories.map(item => (
                   <Option key={item.id}>{item.name}</Option>

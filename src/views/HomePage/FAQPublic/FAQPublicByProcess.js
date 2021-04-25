@@ -3,7 +3,7 @@ import FAQApi from '../../../api/faqRepository';
 import { Typography, Collapse, Spin, Space, notification, Tooltip } from 'antd';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { LoadingOutlined } from '@ant-design/icons';
 import VoteComponent from './VoteComponent';
 const { Title } = Typography;

@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import InstanceApi from '../../../api/instancesRepository';
 import moment from 'moment';
-import {Spin, Space, notification, Popconfirm, Button, Comment, Tooltip, List } from 'antd';
+import {Spin, Space, notification, Comment, Tooltip, List } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class NewsPublicComponent extends Component {
   constructor(props){
@@ -18,7 +16,6 @@ class NewsPublicComponent extends Component {
   componentDidMount(){
     InstanceApi.getNews(this.props.params.id_instance)
       .then(response => {
-        console.log(this.props.params.id_instance);
         this.setState({news: response});
       }).catch(e => {
         notification['error']({

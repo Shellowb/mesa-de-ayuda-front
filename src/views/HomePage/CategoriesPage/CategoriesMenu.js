@@ -4,10 +4,10 @@ import '../HomeLayout/HomeLayout.css';
 import ProcessApi from '../../../api/processRepository';
 import FooterComponent from '../../UtilsPage/Footer.js';
 import Banner from '../../UtilsPage/Banner.js';
-import {  Row, Col, Card, Typography, Space} from 'antd';
-import { Layout, Menu, PageHeader, notification, Spin } from 'antd';
+import { Row } from 'antd';
+import { Layout, Menu, notification, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { faUserGraduate, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -33,7 +33,6 @@ class CategoriesMenu extends Component {
     ProcessApi.getProcessPublished()
       .then(response => {
         this.setState({process: response});
-        console.log(this.state);
       }).catch(e => {
         notification['error']({
           message: 'Error!',

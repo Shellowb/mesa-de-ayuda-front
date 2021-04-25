@@ -1,10 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './Banner.css';
-import { Result, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Layout, Row, Col, Card, Typography, Space, notification, Spin} from 'antd';
-import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { Row, Col, Typography } from 'antd';
+import { faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
 
 const { Title, Text } = Typography;
 

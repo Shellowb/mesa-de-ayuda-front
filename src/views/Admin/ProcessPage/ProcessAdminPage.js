@@ -21,9 +21,7 @@ class ProcessAdminPage extends Component {
     ProcessApi.getProcess()
       .then(response => {
         this.setState({process: response})
-        console.log(response);
       }).catch(e => {
-        console.log(e);
         notification['error']({
           message: 'Error!',
           description:
@@ -88,17 +86,17 @@ class ProcessAdminPage extends Component {
               )}
             />
             <Column title="Última Actualización" dataIndex={["last_update", "updated_by"]} key="last_update"
-              render={(date, user) => (
+              render={(i, data) => (
                 <Space direction="vertical">
-                <Tooltip key="tooltip" title={moment(date).format('YYYY-MM-DD HH:mm:ss')}>
-                  <span key="date" >{moment(date).fromNow()}</span>
+                <Tooltip key="tooltip" title={moment(data.last_update).format('YYYY-MM-DD HH:mm:ss')}>
+                  <span key="date" >{moment(data.last_update).fromNow()}</span>
                 </Tooltip>
-                <p style={{fontSize: "90%"}}><i>Por: {user.updated_by.first_name} {user.updated_by.last_name}</i></p>
+                <p style={{fontSize: "90%"}}><i>Por: {data.updated_by.first_name} {data.updated_by.last_name}</i></p>
                 </Space>
               )}
             />
             <Column title="Publicado" dataIndex={["published","id"]} key="published"
-              render={(published, process) => (
+              render={(i, process) => (
                 <Popconfirm
                     key="popconfirm"
                     placement="topRight"

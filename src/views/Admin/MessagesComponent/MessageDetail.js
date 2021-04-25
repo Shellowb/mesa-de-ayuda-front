@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import ChatApi from '../../../api/chatRepository';
-import moment from 'moment';
 import { Input, Button, Row, Col, Layout, Menu, notification, Comment, Avatar } from 'antd';
 import { ChatFeed, Message } from 'react-chat-ui'
 import { SendOutlined } from '@ant-design/icons';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 const { Footer } = Layout;
-const { SubMenu } = Menu;
 
 class MessageDetail extends Component {
   constructor(props){
     super(props);
-    const uri = `ws://8a52de9f4247.ngrok.io/ws/chat/${this.props.match.params.chat_id}/`;
+    const uri = `${process.env.REACT_APP_WS_URL}${this.props.match.params.chat_id}/`;
     this.state = {
       chatSocket: new WebSocket(uri),
       chat: null,
@@ -26,13 +23,12 @@ class MessageDetail extends Component {
         this.setState({chats: response.map((chat) => {
           return (<Menu.Item key={chat.chat_id}>
               <Comment
-                      author={<a>{chat.first_name} {chat.last_name}</a>}
+                      author={<p>{chat.first_name} {chat.last_name}</p>}
                       avatar={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>}
                       content={<p>Mensaje nuevo</p>}
                     />
             </Menu.Item>)
         })});
-        console.log(response);
       }).catch(e => {
         notification['error']({
           message: 'Error!',
@@ -40,27 +36,26 @@ class MessageDetail extends Component {
           'No hemos cargar correctamente los chats'});
     });
 
-    console.log(this.state.chats);
+    let chatSocket = this.state.chatSocket;
 
-    this.state.chatSocket.onopen = () => {
-      this.state.chatSocket.send(JSON.stringify({
+    chatSocket.onopen = () => {
+      chatSocket.send(JSON.stringify({
         'message': '',
         'bot': false,
         'command': 'fetch_messages'
       }));
     };
 
-    this.state.chatSocket.onmessage = (e) => {
+    chatSocket.onmessage = (e) => {
       const data = JSON.parse(e.data);
       const messages = this.state.messages;
-      console.log(data);
 
-      messages.push(new Message({id: 0, message: data.message}));
+      messages.push(new Message({id: data.fromTelegram ? 1 : 0, message: data.message}));
       this.setState({messages: messages});
       document.querySelector('#chat-message-input').value ='';
     };
 
-    this.state.chatSocket.onclose = (e) => {
+    chatSocket.onclose = (e) => {
       document.querySelector('#chat-message-input').value ='';
       console.error('Chat socket closed unexpectedly');
     };
@@ -75,14 +70,15 @@ class MessageDetail extends Component {
     document.querySelector('#chat-message-submit').onclick = (e) => {
       const messageInputDom = document.querySelector('#chat-message-input');
       const message = messageInputDom.value;
-      console.log(this.state);
-      this.state.chatSocket.send(JSON.stringify({
+      chatSocket.send(JSON.stringify({
         'message': message,
         'bot': false,
         'command': 'new_message'
       }));
       messageInputDom.value = '';
     };
+
+    this.setState({ chatSocket })
   }
 
   render(){

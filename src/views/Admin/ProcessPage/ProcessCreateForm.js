@@ -40,7 +40,6 @@ class ProcessForm extends Component {
       icon: this.state.icon,
       published: this.state.published,
     };
-    console.log(params);
     ProcessApi.postProcess(params)
     .then(r => {
       notification['success']({
@@ -114,10 +113,8 @@ class ProcessForm extends Component {
                 onFocus={ ( event, editor ) => {} }
               />
             </Form.Item>
-            <Form.Item label="Icono" name="icon" rules={[
-              {required: true, message: 'Por favor ingresa un icono'},
-            ]}>
-              <Select defaultValue='faUserGraduate' style={{ width: 120 }} onChange={this.changeIcon}>
+            <Form.Item label="Icono" name="icon">
+              <Select defaultValue={this.state.icon} style={{ width: 120 }} onChange={this.changeIcon}>
                 {Object.keys(this.state.icons).map((key) => {
                   return (<Option value={key}><FontAwesomeIcon icon={this.state.icons[key]} color="#757575"/></Option>)
                 })}

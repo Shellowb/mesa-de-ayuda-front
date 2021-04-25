@@ -23,7 +23,6 @@ class InstancePublicDetailPage extends Component {
     this.setState({params: this.props.match.params});
     InstanceApi.getInstancePublishedById(this.props.match.params.id_instance)
       .then(response => {
-        console.log(response);
         this.setState({instance: response})
         ProcessApi.getProcessPublishedById(this.props.match.params.id_process)
           .then(response => {

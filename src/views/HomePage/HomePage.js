@@ -10,12 +10,7 @@ import FAQPublic from './FAQPublic/FAQPublic';
 
 import { LoadingOutlined } from '@ant-design/icons';
 import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
-import { Layout, Row, Col, Button, Card, Typography, Space, notification, Spin} from 'antd';
-
-import { Collapse } from 'antd';
-const { Footer } = Layout;
-
-const { Panel } = Collapse;
+import { Row, Col, Button, Card, Typography, notification, Spin} from 'antd';
 
 
 const { Title, Text } = Typography;
@@ -42,7 +37,6 @@ class HomePage extends Component {
     ProcessApi.getProcessPublished()
       .then(response => {
         this.setState({process: response.slice(0,4), all: response});
-        console.log('TAMANO', response)
       }).catch(e => {
         notification['error']({
           message: 'Error!',

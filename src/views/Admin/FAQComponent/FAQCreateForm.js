@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import FAQApi from '../../../api/faqRepository';
-import CategoryApi from '../../../api/categoryRepository';
 import { Modal, Button, Form, Switch, Input, notification, Select, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { PlusCircleOutlined } from '@ant-design/icons';

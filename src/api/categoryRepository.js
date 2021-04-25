@@ -2,8 +2,7 @@ import axios from 'axios';
 import AuthApi from './authRepository';
   
 const categoryRepository = () => {  
-  //let baseUrl = 'http://localhost:8000/api/v1/categorias/';   
-  let baseUrl = 'https://8a52de9f4247.ngrok.io/api/v1/categorias/';   
+  let baseUrl = `${process.env.REACT_APP_BASE_URL}/api/v1/categorias/`;    
 
 
   const getCategoriesByProcess = (processId) => {  

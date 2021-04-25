@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import InstanceApi from '../../../api/instancesRepository';
-import { Typography, Timeline, Spin, Space, notification, Popconfirm, Button, Calendar } from 'antd';
+import { Typography, Timeline, Spin, Space, notification, Calendar } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const { Text } = Typography;
 
 class TimelinePublicComponent extends Component {

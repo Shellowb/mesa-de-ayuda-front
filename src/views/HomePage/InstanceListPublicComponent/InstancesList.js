@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import moment from 'moment';
 import InstancesAPI from '../../../api/instancesRepository';
-import { Row, Space, Table, Switch, Button, Typography, Tooltip, Popconfirm, notification, Col, Card, Spin } from 'antd';
-import { faUserGraduate, faBriefcase, faRocket, faClock, faQuestionCircle} from '@fortawesome/free-solid-svg-icons';
+import { Row, Space, Typography, notification, Col, Card, Spin } from 'antd';
+import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadingOutlined } from '@ant-design/icons';
-import { faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const { Column } = Table;
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 class InstanceListComponent extends Component {
   constructor(props){
@@ -22,7 +19,6 @@ class InstanceListComponent extends Component {
     InstancesAPI.getInstancesPublishedByProcess(this.props.id)
       .then(response => {
         this.setState({instances: response})
-        console.log(response);
       }).catch(e => {
         notification['error']({
           message: 'Error!',

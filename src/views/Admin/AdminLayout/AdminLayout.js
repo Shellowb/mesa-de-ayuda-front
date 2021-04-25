@@ -6,10 +6,9 @@ import { Layout, Spin, Menu, Avatar, Button, PageHeader, notification } from 'an
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faEnvelope, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { LoadingOutlined } from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
 import AuthApi from '../../../api/authRepository';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 class AdminLayout extends Component {
 

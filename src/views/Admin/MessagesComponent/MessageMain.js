@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import ChatApi from '../../../api/chatRepository';
 import moment from 'moment';
-import {Spin, notification, Popconfirm, Button, Typography, Divider, Comment, Tooltip, List, Avatar } from 'antd';
+import {Spin, notification, Typography, Comment, Tooltip, List, Avatar } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const { Title, Paragraph } = Typography;
 
@@ -19,18 +17,18 @@ class MessageMain extends Component {
   componentDidMount(){
     ChatApi.getChats()
       .then(response => {
+        response.forEach(chat => {
+          ChatApi.getLastMessage(chat.chat_id).then(chat_response => {
+            chat.last_message = chat_response[0];
+          })
+        });
         this.setState({chats: response});
-        console.log(response);
       }).catch(e => {
         notification['error']({
           message: 'Error!',
           description:
           'No hemos cargar correctamente los chats'});
     });
-  }
-
-  confirmDelete(id) {
-    
   }
 
   render(){
@@ -58,9 +56,12 @@ class MessageMain extends Component {
                 <a href={`/admin/mensajes/${item.chat_id}`}>
                   <span>
                     <Comment
-                      author={<a>{item.first_name} {item.last_name}</a>}
-                      avatar={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>}
-                      content={<p>Mensaje nuevo</p>}
+                      author={<p>{item.first_name} {item.last_name}</p>}
+                      avatar={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{item.first_name[0]}</Avatar>}
+                      content={<p>{item && item.last_message && item.last_message.fromTelegram ? 
+                        `${item.first_name}: ${item.last_message}` : 
+                        `Tú: ${item.last_message}`
+                      }</p>}
                       datetime={
                         <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
                           <span>{moment().fromNow()}</span>

@@ -2,8 +2,7 @@ import axios from 'axios';
 import AuthApi from './authRepository';
   
 const faqRepository = () => {  
-  //let baseUrl = 'http://localhost:8000/api/v1/FAQ/';   
-  let baseUrl = 'https://8a52de9f4247.ngrok.io/api/v1/FAQ/';   
+  let baseUrl = `${process.env.REACT_APP_BASE_URL}/api/v1/FAQ/`;
 
   const getFaq = () => {  
     return new Promise((resolve, reject) => {  
@@ -82,7 +81,6 @@ const faqRepository = () => {
   }; 
 
   const postQuestion = (question) => {  
-    console.log(AuthApi.getLocalToken());
     return new Promise((resolve, reject) => {  
       const instance = axios.create({  
           baseURL: baseUrl,   
@@ -91,7 +89,6 @@ const faqRepository = () => {
             'Authorization': `Token ${AuthApi.getLocalToken()}`  
           }  
       });  
-      console.log(question);
       instance.post('', question)  
       .then(r => {  
         resolve(r.data);  

@@ -2,9 +2,9 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';  
 import HomePage from './views/HomePage/HomePage';  
 import LoginPage from './views/Login/LoginPage';  
-import SignUpPage from './views/SignUp/SignUpPage';  
+// import SignUpPage from './views/SignUp/SignUpPage';  
 import NotAuth from './views/UtilsPage/NotAuth';  
-import NotCreated from './views/UtilsPage/NotCreated';  
+// import NotCreated from './views/UtilsPage/NotCreated';  
 import AdminLayout from './views/Admin/AdminLayout/AdminLayout';  
 import ProcessAdminPage from './views/Admin/ProcessPage/ProcessAdminPage';  
 import ProcessCreatePage from './views/Admin/ProcessPage/ProcessCreatePage';
@@ -45,7 +45,6 @@ export const Routes = () => (
     <CategoryRoute key="HomePage" exact path="/categorias/:id_process" component={ProcessPublicDatail} />  
     <CategoryRoute key="HomePage" exact path="/categorias/:id_process/instancia/:id_instance" component={InstancePublicDetailPage} />  
     <Route key="LoginPage" exact path="/ingresar" component={LoginPage} />  
-    <Route key="SignUpPage" exact path="/registro" component={SignUpPage} />  
     <Route key="NotAuth" exact path="/not-auth" component={NotAuth} />  
     <AdminRoute key="ProcessAdminPage" exact menu="/admin/procesos" path="/admin/procesos" component={ProcessAdminPage} />  
     <AdminRoute key="ProcessCreatePage" exact menu="/admin/procesos" path="/admin/procesos/crear" component={ProcessCreatePage} /> 
