@@ -3,8 +3,10 @@
 ## Dependencias
 
 Node y npm
-```
+```sh
 sudo apt install nodejs
+# en la carpeta del proyecto mesa-de-ayuda-front
+npm install
 ```
 
 ## Enviroment
